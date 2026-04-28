@@ -5,6 +5,8 @@ import com.example.routes.userRoutes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import com.example.routes.authRoutes
+import io.ktor.server.auth.authenticate
 
 fun Application.configureRouting() {
     val userRepository = UserRepository()
@@ -14,6 +16,10 @@ fun Application.configureRouting() {
             call.respondText("Kotlin REST API is running")
         }
 
-        userRoutes(userRepository)
+        authRoutes(userRepository)
+
+        authenticate {
+            userRoutes(userRepository)
+        }
     }
 }

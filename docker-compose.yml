@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ktor-postgres
+    environment:
+      POSTGRES_DB: ktor_db
+      POSTGRES_USER: ktor_user
+      POSTGRES_PASSWORD: ktor_password
+    ports:
+      - "5433:5432"
